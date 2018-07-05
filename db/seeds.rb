@@ -36,8 +36,8 @@ def create_events
 
   csv_for_events.each do |row|
     e = Event.new
-    e.start_time = row['start']
-    e.end_time = row['finish']
+    e.start_time = DateTime.strptime(row['start'], '%m/%d/%Y %H:%M')
+    e.end_time = DateTime.strptime(row['finish'], '%m/%d/%Y %H:%M')
     e.name = row['name']
     if row['track'].match(/^track \d/i)
       e.track = Track.find_by name: row['track']
@@ -48,6 +48,11 @@ def create_events
     puts "saved #{e.name}"
   end
   puts "There are now #{Event.count} rows in the Events table"
+end
+
+def format_date(row)
+  split_row = row.split(' ')
+
 end
 
 create_tracks

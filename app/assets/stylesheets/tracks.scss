@@ -1,3 +1,25 @@
 // Place all the styles related to the Tracks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.time-unit {
+  border: 1px solid grey;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.label {
+  text-align: center;
+  border: 1px solid grey;
+  height: 75px;
+
+}
+
+.event {
+  border: 1px solid grey;
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  background-color: lightblue;
+}
