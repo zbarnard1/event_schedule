@@ -1,7 +1,6 @@
 class TracksController < ApplicationController
 
   # GET /tracks
-  # GET /tracks.json
   def index
     @offset = params[:offset].to_i || 0
     @selected_day = day(@offset)
@@ -16,9 +15,6 @@ class TracksController < ApplicationController
 
     def day(offset)
       o = offset || 0
-      puts '********'
-      puts "the day is: #{Event.order(start_time: :asc).first.start_time.advance(days: o)}"
-      puts '********'
       Event.order(start_time: :asc).first.start_time.advance(days: o)
     end
 end
