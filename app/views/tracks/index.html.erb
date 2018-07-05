@@ -1,29 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Tracks</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Display Order</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="label nav">
+      <span> <%= "#{@selected_day.to_date}" %><br></span>
+        <%= link_to "<-", tracks_path(offset: @offset - 1) %>
+        <%= link_to "->", tracks_path(offset: @offset + 1) %>
+      </div>
+        <% day_times.each do |time| %> 
+          <%= render partial: "time", :locals => { :time => time } %>
+        <% end %>
+    </div>
     <% @tracks.each do |track| %>
-      <tr>
-        <td><%= track.name %></td>
-        <td><%= track.display_order %></td>
-        <td><%= link_to 'Show', track %></td>
-        <td><%= link_to 'Edit', edit_track_path(track) %></td>
-        <td><%= link_to 'Destroy', track, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col">
+        <div class="label">
+          <span class="label-text"><%= track.name %></span>
+        </div>
+        <% track.all_events(@selected_day).map do |event| %>
+          <%= render partial: "event_divs", :locals => { :event => event } %>
+        <% end %>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Track', new_track_path %>
+  </div>
+</div>

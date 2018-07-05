@@ -1,0 +1,3 @@
+  <% top_position = "top: " + calc_position(event.start_time)%>
+  <% event_height = "height: " + calc_height(event.start_time, event.end_time) %>
+  <%= tag.div event.name, class: "event", style: top_position + event_height %>
